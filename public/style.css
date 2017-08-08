@@ -98,3 +98,25 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+/* 
+For New/Signup Forms
+*/
+.new-form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.new-form label > span {
+  display: inline-block;
+  min-width: 8em;
+}
+
+.new-form input[type="submit"] {
+  margin-top: 1em;
+}
+
+.new-form-errors {
+  color: red;
+  font-weight: bold;
+}

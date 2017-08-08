@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const contacts = require('./contacts')
 const DbContacts = require('../../db/contacts');
+const auth = require('./auth')
 
 router.get('/', (request, response) => {
   DbContacts.getContacts()
@@ -9,5 +10,6 @@ router.get('/', (request, response) => {
 })
 
 router.use('/contacts', contacts); // /contacts/search
+router.use(auth);
 
 module.exports = router;
