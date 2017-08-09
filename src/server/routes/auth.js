@@ -8,9 +8,9 @@ router.get('/signup', (request, response) => {
 
 router.post('/signup', (request, response) => {
   const { username, password } = request.body
- if (username.length === 0 || password.length === 0) {
-   response.render('signup', { error: "Username or Password CANNOT be blank" })
- }
+  if (username.length === 0 || password.length === 0) {
+    response.render('signup', { error: "Username or Password CANNOT be blank" })
+  }
   user.create(username, hashPassword(password, 10))
   .then(user => {
     request.session.user = user;
