@@ -12,13 +12,12 @@ const isLoggedIn = (request, response, next) => {
   if (!request.session.user) {
     response.redirect('/login')
   } else {
-
+    response.locals.isLoggedIn = true;
+    next()
   }
-
 }
 
 const comparePassword = (password, hash) => {
-  // console.log(`User:: ${JSON.stringify(user)}, password:: ${password} `)
   return bcrypt.compareSync(password, hash)
 }
 

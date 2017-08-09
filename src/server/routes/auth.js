@@ -8,17 +8,17 @@ router.get('/signup', (request, response) => {
 
 router.post('/signup', (request, response) => {
   const { username, password } = request.body
-   if (username.length === 0 || password.length === 0) {
-       response.render('signup', { error: "Username or Password CANNOT be blank" })
-   }
+ if (username.length === 0 || password.length === 0) {
+   response.render('signup', { error: "Username or Password CANNOT be blank" })
+ }
   user.create(username, hashPassword(password, 10))
   .then(user => {
-          request.session.user = user;
-          response.redirect('/')
+    request.session.user = user;
+    response.redirect('/')
   })
   .catch(error => {
-      console.log(error.message)
-      response.render('signup', { error })
+    console.log(error.message)
+    response.render('signup', { error })
   })
 })
 
@@ -33,9 +33,16 @@ router.post('/login', (request, response) => {
       if (!user || !(comparePassword(password, user.password))) {
         response.render('login', {error: "Username or Password is invalid" })
       } else {
+        request.session.user = user;
         response.redirect('/')
       }
   }
 )})
+
+router.get('/logout', (request, response) => {
+  request.session.destroy(() => {
+    response.redirect('/login')
+  })
+})
 
 module.exports = router
