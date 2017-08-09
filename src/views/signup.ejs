@@ -1,16 +1,19 @@
 <%- include header.ejs %>
 
     <h1>Signup</h1>
-
+    <% if(error.length > 0){ %>
+         <div class="alert alert-danger"> <%= error %></div>
+    <% }; %>
+   
     <form method="post" action="/signup" class="new-form">
         <pre class="new-form-errors"></pre>
         <label>
-      <span>User Name:</span>
-      <input type="text" name="username" />
+        <span>User Name:</span>
+        <input type="text" name="username" />
     </label>
         <label>
-      <span>Password:</span>
-      <input type="password" name="password" />
+        <span>Password:</span>
+        <input type="password" name="password" />
     </label>
         <input type="submit" value="submit">
     </form>

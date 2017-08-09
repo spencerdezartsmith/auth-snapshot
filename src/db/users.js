@@ -9,12 +9,19 @@ const create = (username, password) => {
     RETURNING
     username
     `, [username, password])
-    .catch(error => {
-        console.log ({ error: error.msg })
-        throw error
-    })
+}
+
+const findUser = (username) => {
+ return db.oneOrNone(`
+    SELECT
+    *
+    FROM users
+    WHERE
+    username = $1
+ `, [username])
 }
 
 module.exports = {
-    create
+    create,
+    findUser
 }
