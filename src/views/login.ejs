@@ -1,7 +1,11 @@
 <%- include header.ejs %>
 
     <h1>Login</h1>
-
+    <% if(error.length > 0){ %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+        <% }; %>
     <form method="post" action="/login" class="new-form">
         <pre class="new-form-errors"></pre>
         <label>
