@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const dbContacts = require('./db/contacts')
+const dbContacts = require('./models/db/contacts')
 const app = express()
 const {renderError} = require('./server/utils')
 const routes = require('./server/routes');
@@ -16,6 +16,7 @@ app.use((request, response, next) => {
   response.locals.query = ''
   response.locals.error = ''
   response.locals.isLoggedIn = false
+  response.locals.isAdmin = false
   next()
 })
 
@@ -28,7 +29,7 @@ app.use(session({
 app.use('/', routes)
 
 app.use((request, response) => {
-  response.render('not_found')
+  response.render('errors/not_found')
 })
 
 const port = process.env.PORT || 3000
