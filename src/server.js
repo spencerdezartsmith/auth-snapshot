@@ -1,10 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const pgSession = require('connect-pg-simple')(session)
 const dbContacts = require('./models/db/contacts')
 const app = express()
 const {renderError} = require('./server/utils')
 const routes = require('./server/routes');
-const session = require('express-session')
+
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
@@ -21,9 +23,13 @@ app.use((request, response, next) => {
 })
 
 app.use(session({
-  secret: 'keyboard cat',
+  store: new pgSession({
+    conString: 'postgres://localhost:5432/contacts_development'
+  }),
+  secret: 'helloworld',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 }
 }))
 
 app.use('/', routes)
