@@ -15,7 +15,6 @@ textarea {
   font-family: monospace;
 }
 
-
 nav {
   background-color: black;
   color: white;
@@ -88,8 +87,15 @@ nav .search-form input {
   flex: 1 1 auto;
 }
 
+.contact-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .contact-show-page-controls{
-  text-align: right;
+  display: flex;
+  align-items: center;
 }
 
 .new-contact-form label {
