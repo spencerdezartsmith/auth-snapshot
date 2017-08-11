@@ -8,7 +8,7 @@ router.get('/:contactId', (request, response, next) => {
   if (!contactId || !/^\d+$/.test(contactId)) return next()
   DbContacts.getContact(contactId)
     .then(function(contact) {
-      if (contact) return response.render('contacts/show', { contact })
+      if (contact) return response.render('contacts/show', { contact, isAdmin: response.locals.isAdmin })
       next()
     })
     .catch( error => renderError(error, response, response) )
