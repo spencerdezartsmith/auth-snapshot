@@ -18,4 +18,12 @@ const isAdmin = (request, response, next) => {
   }
 }
 
-module.exports = { isLoggedIn, isAdmin }
+const checkPermissions = (request, response, next) => {
+  if (response.locals.isAdmin) {
+    next()
+  } else {
+    response.status(403).render('errors/not_authorized')
+  }
+}
+
+module.exports = { isLoggedIn, isAdmin, checkPermissions }
