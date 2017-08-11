@@ -3,7 +3,7 @@ const contacts = require('./contacts')
 const adminRoutes = require('./admins')
 const auth = require('./auth')
 const DbContacts = require('../../models/contacts');
-const { isLoggedIn, isAdmin } = require('../middlewares')
+const { isLoggedIn, isAdmin, checkPermissions } = require('../middlewares')
 
 router.use(auth)
 router.use(isLoggedIn)
@@ -15,6 +15,8 @@ router.get('/', (request, response) => {
     .catch( err => console.log('err', err) )
 })
 router.use('/contacts', contacts)
+
+router.use(checkPermissions)
 router.use('/contacts', adminRoutes)
 
 module.exports = router;
