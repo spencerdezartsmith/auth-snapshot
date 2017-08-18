@@ -1,0 +1,20 @@
+<nav>
+  <div class="nav-container">
+    <% if (isLoggedIn) { %>
+      <a href="/">Home</a>
+      <form method="get" action="/contacts/search" class="search-form">
+        <input name="q" type="search" placeholder="search" value="<%= query %>" autofocus/>
+        <input type="submit" style="display: none" />
+      </form>
+  </div>
+  <div class="nav-container">
+      <% if (isAdmin) { %>
+        <a href="/contacts/new">New Contact</a>
+      <% } %>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+    <% } %>
+  </div>
+</nav>

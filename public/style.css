@@ -15,16 +15,20 @@ textarea {
   font-family: monospace;
 }
 
-
 nav {
   background-color: black;
   color: white;
+  height: 2.5em;
   padding: 0.3em 0.5em;
+  display: flex !important;
+  justify-content: space-between;
 }
 
 nav a {
   text-decoration: none;
   color: inherit;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 nav .search-form {
@@ -35,6 +39,13 @@ nav .search-form input {
   border-radius: 5px;
   border: none;
   padding: 0.3em 0.5em;
+  height: 1.5em;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 
@@ -76,8 +87,15 @@ nav .search-form input {
   flex: 1 1 auto;
 }
 
+.contact-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .contact-show-page-controls{
-  text-align: right;
+  display: flex;
+  align-items: center;
 }
 
 .new-contact-form label {
@@ -99,7 +117,7 @@ nav .search-form input {
   font-weight: bold;
 }
 
-/* 
+/*
 For New/Signup Forms
 */
 .new-form label {
